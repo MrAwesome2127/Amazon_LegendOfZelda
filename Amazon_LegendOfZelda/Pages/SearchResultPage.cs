@@ -9,7 +9,7 @@ namespace Amazon_LegendOfZelda.Pages
 {
     public class SearchResultPage
     {
-        public SearchResultPage(IWebDriver webDriver)
+        public SearchResultPage()
         {
             driver = webDriver;
         }
