@@ -1,37 +1,38 @@
-﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Amazon_LegendOfZelda.Utilities;
+using Microsoft.Extensions.Configuration;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 
 namespace Amazon_LegendOfZelda.Pages
 {
-    public class HomePage
+    public class HomePage : Base
     {
-        public HomePage(IWebDriver webDriver)
+        IWebDriver _driver;
+        IConfiguration _capabilities = new ConfigurationBuilder()
+            .AddJsonFile(@"appsettings.json", optional: true).Build();
+
+        public HomePage(IWebDriver _driver)
         {
-            driver = webDriver;
+            this._driver = _driver;
         }
 
-        private IWebDriver driver { get; }
-
-        //string url = ("appsettings.json").ToLower("URL").ToString;
-
         #region Locators
-            public IWebElement fldSearch => driver.FindElement(By.Id("twotabsearchtextbox"));
-            public IWebElement btnSearch => driver.FindElement(By.Id("nav-search-submit-button"));
+            public IWebElement fldSearch => _driver.FindElement(By.Id("twotabsearchtextbox"));
+            public IWebElement btnSearch => _driver.FindElement(By.Id("nav-search-submit-button"));
         #endregion
 
         public void NavigateURL()
         {
-
+            var url = _capabilities.GetSection("URL").Value;
+            _driver.Url = url;
+            _driver.Navigate().Refresh(); //Amazon HomePage has a random offset page appear, "refresh" will resolve the issue.
+            _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
         }
-        public void Search_Item()
+        public void Search_Item(string SearchItem)
         {
             Assert.That(fldSearch.Displayed, Is.True);
-            fldSearch.SendKeys("Legend Of Zelda Socks");
+            fldSearch.Clear();
+            fldSearch.SendKeys(SearchItem);
             btnSearch.Click();
         }
     }

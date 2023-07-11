@@ -1,40 +1,49 @@
-﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Amazon_LegendOfZelda.Utilities;
+using OpenQA.Selenium;
 
 namespace Amazon_LegendOfZelda.Pages
 {
-    public class SearchResultPage
+    public class SearchResultPage : Base
     {
-        public SearchResultPage()
+        private IWebDriver _driver;
+        public SearchResultPage(IWebDriver _driver)
         {
-            driver = webDriver;
+            this._driver = _driver;
         }
 
-        private IWebDriver driver { get; }
-
         #region Locators
-            private IWebElement btnAddToCart => driver.FindElement(By.Id("add-to-cart-button"));
-            private IWebElement btnGotToCasrt => driver.FindElement(By.Id("sw-gtc"));
-            private IWebElement imgLOZSock_Bundle => driver.FindElement(By.XPath("//div//img[@alt='Sponsored Ad - Bioworld mens The Legend of Zelda 5-Pack Pair Casual Crew 43689 Socks, Green, 10-13']"));
+            private IWebElement btnAddToCart => _driver.FindElement(By.Id("add-to-cart-button"));
+            private IWebElement btnGotToCart => _driver.FindElement(By.Id("nav-cart"));
+            private IWebElement product_LOZ => _driver.FindElement(By.XPath("(//*[@class=\"s-image\"])[2]"));
+            private IWebElement Popup_SideSheets => _driver.FindElement(By.Id("attach-close_sideSheet-link"));
+            private IWebElement imgLOZSock_Bundle => _driver.FindElement(By.XPath("(//img[@alt='Sponsored Ad - Bioworld mens The Legend of Zelda 5-Pack Pair Casual Crew 43689 Socks, Green, 10-13'])[1]"));
         #endregion
 
-        public void SelectSocks()
+        public void AddProduct()
         {
-            Assert.That(imgLOZSock_Bundle.Displayed, Is.True);
-            imgLOZSock_Bundle.Click();
+            Assert.That(product_LOZ.Displayed, Is.True);
+            product_LOZ.Click();
         }
 
         public void AddToCart()
         {
             btnAddToCart.Click();
+            
+            //Pop up appears after the second item is selected.
+            try
+            {
+                Popup_SideSheets.Click();
+                Thread.Sleep(1000);
+                Console.WriteLine("Pop up SideSheets was display!");
+            }
+            catch
+            {
+                Console.WriteLine("Pop up SideSheets, did NOT display!");
+            }
         }
         public void ProceedtoCheckout()
         {
-            btnGotToCasrt.Click();
+            btnGotToCart.Click();
         }
     }
 }
