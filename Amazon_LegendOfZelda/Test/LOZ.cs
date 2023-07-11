@@ -61,13 +61,11 @@ namespace Amazon_LegendOfZelda.Test
         public static IEnumerable<TestCaseData> TCDataConfig_SingleItem()
         {
             yield return new TestCaseData(
-                getJsonData().URL_extractJson("URL"),
                 getJsonData().TestData_extractJson("SearchItem"));
         }
         public static IEnumerable<TestCaseData> TCDataConfig_SwagUp()
         {
             yield return new TestCaseData(
-                getJsonData().URL_extractJson("URL"),
                 getJsonData().TestData_extractJson("SearchItem"),
                 getJsonData().TestData_extractJsonArray("LegendOfZelda_SWAG"));
         }
