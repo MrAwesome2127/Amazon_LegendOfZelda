@@ -1,6 +1,8 @@
 ﻿using AventStack.ExtentReports;
 using AventStack.ExtentReports.Model;
 using AventStack.ExtentReports.Reporter;
+using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -44,8 +46,13 @@ namespace Amazon_LegendOfZelda.Utilities
         
         [SetUp]
         [BeforeScenario]
-        public void Setup()
+        public void Setup(IServiceCollection services)
         {
+            //services
+            //    .AddSingleton<IRestLibrary, RestLibrary>()
+            //    .AddScoped<IRestBuilder, RestBuilder>()
+            //    .AddScoped<IRestFactory, RestFactory>();
+
             _Test = _Extent.CreateTest(TestContext.CurrentContext.Test.Name);
             BrowserName = TestContext.Parameters["browserName"];
             if (BrowserName == null)
