@@ -1,7 +1,6 @@
 ﻿using Amazon_LegendOfZelda.Utilities;
 using Microsoft.Extensions.Configuration;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
 
 namespace Amazon_LegendOfZelda.Pages
 {
@@ -24,7 +23,7 @@ namespace Amazon_LegendOfZelda.Pages
         public void NavigateURL()
         {
             var url = _capabilities.GetSection("URL").Value;
-            _driver.Url = url;
+            _driver.Navigate().GoToUrl(url);
             _driver.Navigate().Refresh(); //Amazon HomePage has a random offset page appear, "refresh" will resolve the issue.
             _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
         }

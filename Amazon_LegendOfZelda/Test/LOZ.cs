@@ -15,7 +15,7 @@ namespace Amazon_LegendOfZelda.Test
         [Test, 
         TestCaseSource(nameof(TCDataConfig_SingleItem)), 
         Category("Regression")]
-        public void LOZ_Socks(string url, string SearchItem)
+        public void LOZ_Socks(string SearchItem)
         {
             HomePage homePage = new HomePage(getDriver());
             homePage.NavigateURL();
@@ -30,7 +30,7 @@ namespace Amazon_LegendOfZelda.Test
         [Test, 
         TestCaseSource(nameof(TCDataConfig_SwagUp)), 
         Category("Regression")]
-        public void LOZ_Swag(string url, string SearchItem, string[] LegendOfZelda_SWAG)
+        public void LOZ_Swag(string SearchItem, string[] LegendOfZelda_SWAG)
         {
             HomePage homePage = new HomePage(getDriver());
             homePage.NavigateURL();

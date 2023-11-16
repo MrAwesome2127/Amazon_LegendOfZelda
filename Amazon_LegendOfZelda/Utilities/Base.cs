@@ -44,9 +44,8 @@ namespace Amazon_LegendOfZelda.Utilities
             _Extent.AddSystemInfo("Testsite", "Amazon");
         }
         
-        [SetUp]
         [BeforeScenario]
-        public void Setup(IServiceCollection services)
+        public void Setup()
         {
             //services
             //    .AddSingleton<IRestLibrary, RestLibrary>()
@@ -64,6 +63,7 @@ namespace Amazon_LegendOfZelda.Utilities
 
         public IWebDriver getDriver()
         {
+            Setup();
             return _driver.Value;
         }
 
