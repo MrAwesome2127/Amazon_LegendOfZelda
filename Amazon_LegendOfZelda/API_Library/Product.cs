@@ -1,6 +1,4 @@
-using System.Collections.Generic;
-
-namespace GraphQLProductApp.Data;
+namespace Amazon_LegendOfZelda.API_Library;
 
 public class Product
 {

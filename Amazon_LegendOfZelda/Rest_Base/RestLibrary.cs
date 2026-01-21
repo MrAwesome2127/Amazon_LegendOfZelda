@@ -1,29 +1,27 @@
-//using Microsoft.AspNetCore.Mvc.Testing;
-//using RestSharp;
 
-//namespace Amazon_LegendOfZelda.Rest_Base;
+namespace Amazon_LegendOfZelda.Rest_Base;
 
-//public interface IRestLibrary
-//{
-//    RestClient RestClient { get; }
-//}
+public interface IRestLibrary
+{
+    RestClient RestClient { get; }
+}
 
-//public class RestLibrary : IRestLibrary
-//{
-//    public RestLibrary(WebApplicationFactory<GraphQLProductApp.Startup> webApplicationFactory)
-//    {
-//        var restClientOptions = new RestClientOptions
-//        {
-//            BaseUrl = new Uri("https://localhost:5001"),
-//            RemoteCertificateValidationCallback = (sender, certificate, chain, errors) => true
-//        };
+public class RestLibrary : IRestLibrary
+{
+    public RestLibrary(WebApplicationFactory<Startup> webApplicationFactory)
+    {
+        var restClientOptions = new RestClientOptions
+        {
+            BaseUrl = new Uri("https://localhost:5001"),
+            RemoteCertificateValidationCallback = (sender, certificate, chain, errors) => true
+        };
 
-//        //Spawn system under test
-//        var client = webApplicationFactory.CreateDefaultClient();
-        
-//        //Rest Client
-//        RestClient = new RestClient(client, restClientOptions);
-//    }
-     
-//    public RestClient RestClient { get; }
-//}
+        //Spawn system under test
+        var client = webApplicationFactory.CreateDefaultClient();
+
+        //Rest Client
+        RestClient = new RestClient(client, restClientOptions);
+    }
+
+    public RestClient RestClient { get; }
+}

@@ -1,4 +1,4 @@
-namespace GraphQLProductApp.Data;
+namespace Amazon_LegendOfZelda.API_Library;
 
 public class Components
 {

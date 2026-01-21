@@ -1,20 +1,21 @@
-//namespace Amazon_LegendOfZelda.Rest_Base;
 
-//public interface IRestFactory
-//{
-//    IRestBuilder Create();
-//}
+namespace Amazon_LegendOfZelda.Rest_Base;
 
-//public class RestFactory : IRestFactory
-//{
-//    private readonly IRestBuilder _restBuilder;
-//    public RestFactory(IRestBuilder restBuilder)
-//    {
-//        _restBuilder = restBuilder;
-//    }
+public interface IRestFactory
+{
+    IRestBuilder Create();
+}
 
-//    public IRestBuilder Create()
-//    {
-//        return _restBuilder;
-//    }
-//}
+public class RestFactory : IRestFactory
+{
+    private readonly IRestBuilder _restBuilder;
+    public RestFactory(IRestBuilder restBuilder)
+    {
+        _restBuilder = restBuilder;
+    }
+
+    public IRestBuilder Create()
+    {
+        return _restBuilder;
+    }
+}

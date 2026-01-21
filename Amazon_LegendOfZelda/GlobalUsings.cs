@@ -1,0 +1,17 @@
+global using AventStack.ExtentReports;
+global using AventStack.ExtentReports.Model;
+global using AventStack.ExtentReports.Reporter;
+global using Microsoft.AspNetCore.Mvc.Testing;
+global using Microsoft.Extensions.Configuration;
+global using Microsoft.Extensions.DependencyInjection;
+global using Newtonsoft.Json.Linq;
+global using NUnit.Framework;
+global using NUnit.Framework.Interfaces;
+global using OpenQA.Selenium;
+global using OpenQA.Selenium.Chrome;
+global using OpenQA.Selenium.Edge;
+global using OpenQA.Selenium.Firefox;
+global using RestSharp;
+global using System.Configuration;
+global using TechTalk.SpecFlow;
+global using WebDriverManager.DriverConfigs.Impl;
